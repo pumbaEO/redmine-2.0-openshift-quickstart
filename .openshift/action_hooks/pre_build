@@ -32,4 +32,18 @@ if [ -f config/database.yml ]; then
            s#\$OPENSHIFT_DB_PASSWORD#$OPENSHIFT_DB_PASSWORD#"  \
           config/database.yml
 fi
+if [! -d "$OPENSHIFT_DATA_DIR/files"]; then 
+  mkdir "$OPENSHIFT_DATA_DIR/files"
+fi
+if [!-d "$OPENSHIFT_DATA_DIR/public/plugin_assets"]; then
+  mkdir "$OPENSHIFT_DATA_DIR/public/plugin_assets" 
+fi
+if [!-d files]; then
+  ln -s "$OPENSHIFT_DATA_DIR/files" files
+fi
+
+if [!-d public/plugin_assets]; then
+  ln -s "$OPENSHIFT_DATA_DIR/public/plugin_assets" public/plugin_assets
+fi
+
 popd > /dev/null
