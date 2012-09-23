@@ -43,5 +43,8 @@ MYEOF
     echo "done."
 else
     echo "Database found, skipping import."
+    echo "Plugins migrate start"
+    bundle exec rake redmine:plugins:migrate RAILS_ENV=production
+    echo "Plugins migrate end"
 fi
 
